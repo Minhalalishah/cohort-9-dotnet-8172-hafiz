@@ -1,0 +1,23 @@
+# .NET
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+*.db
+*.log
+
+# Node
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Sonar
+.scannerwork/
