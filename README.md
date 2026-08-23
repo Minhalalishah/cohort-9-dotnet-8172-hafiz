@@ -9,24 +9,6 @@ Implemented the complete ASP.NET Core backend for the Task Management Tool.
 - Role-based authorization
 - Password hashing
 
-### Task Management
-- Create tasks
-- Read tasks
-- Update tasks
-- Delete tasks
-- Assign tasks to users
-- Task priorities
-- Task categories
-- Due dates
-- Task status
-
-### Dashboard
-- Completed task count
-- In-progress task count
-- Pending task count
-- User-specific dashboard data
-- Admin dashboard data
-
 ### Database
 - Entity Framework Core
 - SQL Server
