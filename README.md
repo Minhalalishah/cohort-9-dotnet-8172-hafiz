@@ -1,168 +1,84 @@
+## 📊 Dashboard & Task Management Backend
 
-# 🚀 Task Management Tool
+## ✨ Features Added
 
-A full-stack web-based **Task Management System** built with **ASP.NET Core 8 Web API, React, TypeScript, Entity Framework Core, and Microsoft SQL Server**.
+### 📊 Dashboard
 
-## ✨ Features
+- Added Dashboard API functionality
+- Added completed task count
+- Added in-progress task count
+- Added pending task count
+- Added user-specific task statistics
+- Added admin/super-user statistics for all tasks
+- Added task status-based counting
 
-* 🔐 User Registration & Login
-* 🔑 JWT Authentication & Role-Based Authorization
-* 📋 Task CRUD Operations
-* 👥 Task Assignment
-* 📊 Dashboard & Task Statistics
-* 🏷️ Task Categories, Priorities & Status
-* 🔎 Search & Filtering
-* 👤 User Profile
-* 📝 Serilog Logging
-* 🛡️ Global Exception Handling
-* 🧪 xUnit Unit Testing
-* 📈 SonarQube Code Quality Analysis
-* 🌿 Git & GitHub Version Control
+### 📝 Task Management
 
-**Technologies:** React, TypeScript, ASP.NET Core, C#, SQL Server
+- Implemented Task Controller
+- Create new tasks
+- Retrieve task list
+- Retrieve task details by ID
+- Update existing tasks
+- Delete tasks
+- Assign tasks to users
+- Set task priority
+- Set task category
+- Set task due date
+- Manage task status
+- Added filtering support where applicable
 
-## 🛠️ Tech Stack
+### 🔐 Authorization
 
-### Frontend
+- Dashboard data is based on the authenticated user
+- Regular users can access their own task information
+- Admin/Super User can access overall task statistics
+- Protected API endpoints using authentication/authorization
 
-* React 19
-* TypeScript
-* Vite
-* React Router
-* Axios
-* CSS3
+### 🗄️ Database
 
-### Backend
+- Integrated Dashboard and Task functionality with Entity Framework Core
+- Uses SQL Server database
+- Added database queries for task status statistics
+- Uses existing User and Task relationships
 
-* ASP.NET Core 8 Web API
-* C#
-* Entity Framework Core 8
-* REST API
-* JWT Authentication
-* BCrypt
+### 🛡️ Error Handling & Logging
 
-### Database
-
-* Microsoft SQL Server
-* SQL Server Express
-* Entity Framework Core
-* LINQ
-
-### Tools
-
-* Serilog
-* xUnit
-* SonarQube
-* Git
-* GitHub
-
-## 🏗️ Architecture
-
-```text
-React + TypeScript
-        │
-        ▼
-ASP.NET Core 8 Web API
-        │
-        ▼
-Entity Framework Core
-        │
-        ▼
-Microsoft SQL Server
-```
-
-## 📁 Project Structure
-
-```text
-TaskManagementTool/
-├── backend/
-│   ├── TaskManagement.Api/
-│   └── TaskManagement.Tests/
-├── frontend/
-│   └── src/
-├── docs/
-├── scripts/
-├── .gitignore
-└── README.md
-```
-
-## 🚀 Quick Start
-
-### Backend
-
-```powershell
-cd backend
-dotnet restore
-dotnet build
-dotnet ef database update --project TaskManagement.Api
-dotnet run --project TaskManagement.Api
-```
-
-**Backend:** `http://localhost:5000`
-
-**Swagger:** `http://localhost:5000/swagger`
-
-### Frontend
-
-```powershell
-cd frontend
-npm install
-npm run dev
-```
-
-**Frontend:** `http://localhost:5173`
-
-## 🌿 Git Workflow
-
-```text
-main
- │
- └── develop
-      ├── feature/authentication
-      ├── feature/task-management
-      ├── feature/dashboard
-      ├── feature/profile
-      ├── feature/logging
-      ├── feature/testing
-      └── feature/sonarqube
-```
-
-Feature branches are created from `develop` and merged back after completion.
+- Uses existing global exception handling
+- Integrated with Serilog logging
+- Handles invalid task IDs and request errors appropriately
 
 ## 🧪 Testing
 
-Run backend tests:
+The following checks were performed:
 
-```powershell
-cd backend
-dotnet test
-```
+- `dotnet restore`
+- `dotnet build`
+- SQL Server database connection
+- Swagger API testing
+- Dashboard API testing
+- Task Create testing
+- Task Read testing
+- Task Update testing
+- Task Delete testing
+- Authorization testing
 
-## 📊 Project Status
+## 📁 Main Areas Changed
 
-| Component             | Status |
-| --------------------- | ------ |
-| React + TypeScript    | ✅      |
-| ASP.NET Core 8        | ✅      |
-| SQL Server            | ✅      |
-| Entity Framework Core | ✅      |
-| JWT Authentication    | ✅      |
-| Task CRUD             | ✅      |
-| Dashboard             | ✅      |
-| Serilog Logging       | ✅      |
-| Exception Handling    | ✅      |
-| xUnit Testing         | ✅      |
-| SonarQube             | ✅      |
-| Git/GitHub            | ✅      |
-
-## 👨‍💻 Author
-
-**Hafiz Syed Minhal Ali**
-**cohort-9-dotnet-8172-hafiz**
-
-
-
-
-
-
-
+```text
+backend/
+└── TaskManagement.Api/
+    ├── Controllers/
+    │   ├── DashboardController.cs
+    │   └── TasksController.cs
+    │
+    ├── Services/
+    │   ├── DashboardService.cs
+    │   └── TaskService.cs
+    │
+    ├── Models/
+    │   └── Task-related models/DTOs
+    │
+    ├── Data/
+    │   └── AppDbContext.cs
+    │
+    └── Program.cs
