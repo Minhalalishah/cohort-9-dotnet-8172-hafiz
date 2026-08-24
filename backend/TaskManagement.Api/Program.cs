@@ -50,7 +50,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<JwtTokenService>();
 builder.Services.AddScoped<AuthService>();
-
+builder.Services.AddScoped<TaskService>();
+builder.Services.AddScoped<DashboardService>();
 
 builder.Services.AddCors(options =>
 {
@@ -75,7 +76,7 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.EnsureCreated();
-    
+    await DbSeeder.SeedAsync(db);
 }
 
 app.Run();
