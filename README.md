@@ -24,17 +24,58 @@ A full-stack task management application built with **ASP.NET Core 8, React, Typ
 
 ```text
 TaskManagementTool/
+│
 ├── backend/
+│   │
 │   ├── TaskManagement.Api/
 │   │   ├── Controllers/
 │   │   ├── Data/
 │   │   ├── Middleware/
 │   │   ├── Models/
-│   │   └── Services/
+│   │   ├── Services/
+│   │   ├── Properties/
+│   │   ├── appsettings.json
+│   │   ├── appsettings.Development.json
+│   │   ├── Program.cs
+│   │   └── TaskManagement.Api.csproj
+│   │
 │   └── TaskManagement.Tests/
+│       ├── Controllers/
+│       ├── Services/
+│       └── TaskManagement.Tests.csproj
+│
+├── frontend/
+│   │
+│   ├── public/
+│   │
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── Layout.tsx
+|   |   |   └── TaskFormFields.tsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Login.tsx
+│   │   │   ├── Register.tsx
+│   │   │
+│   │   ├── css/
+│   │   │   ├── auth.css
+│   │   │   
+│   │   │
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   ├── api.ts
+│   │   ├── auth.tsx
+│   │   ├── types.ts
+│   │   └── styles.css
+│   │
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── tsconfig.json
+│   ├── vite.config.ts
+│   └── index.html
+│
 ├── .gitignore
 └── README.md
-```
 
 ## ▶️ Run Project
 
