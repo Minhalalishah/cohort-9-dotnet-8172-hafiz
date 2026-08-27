@@ -49,17 +49,20 @@ TaskManagementTool/
 │   ├── public/
 │   │
 │   ├── src/
+│   │   │
 │   │   ├── components/
-│   │   │   └── Layout.tsx
-|   |   |   └── TaskFormFields.tsx
+│   │   │   ├── Layout.tsx
+│   │   │   └── TaskFormFields.tsx
 │   │   │
 │   │   ├── pages/
 │   │   │   ├── Login.tsx
 │   │   │   ├── Register.tsx
+│   │   │   ├── Dashboard.tsx
+│   │   │   └── Profile.tsx
 │   │   │
 │   │   ├── css/
 │   │   │   ├── auth.css
-│   │   │   
+│   │   │   └── sidebar.css
 │   │   │
 │   │   ├── App.tsx
 │   │   ├── main.tsx
@@ -76,6 +79,7 @@ TaskManagementTool/
 │
 ├── .gitignore
 └── README.md
+
 
 ## ▶️ Run Project
 
