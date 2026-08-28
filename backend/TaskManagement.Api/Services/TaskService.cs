@@ -5,7 +5,7 @@ using TaskStatus = TaskManagement.Api.Models.TaskStatus;
 
 namespace TaskManagement.Api.Services;
 
-public class TaskService(AppDbContext db, ILogger<TaskService> logger)
+public class TaskService(AppDbContext db, ILogger<TaskService> logger, ActivityLogService activity)
 {
     private static TaskResponse Map(TaskItem x) =>
         new(x.Id, x.Title, x.Description, x.Status, x.Priority, x.Category, x.DueDate,
@@ -41,7 +41,30 @@ public class TaskService(AppDbContext db, ILogger<TaskService> logger)
         db.Tasks.Add(item);
         await db.SaveChangesAsync();
         logger.LogInformation("Task created: {TaskId} by {UserId}", item.Id, userId);
-        await db.Entry(item).Reference(x => x.AssignedTo).LoadAsync();
+
+        // The task itself is already saved at this point. Everything below is
+        // "nice to have" (loading the assignee's name, writing an activity log
+        // entry) - if either of these fails for any reason, we don't want the
+        // whole request to blow up and report an error for a task that was, in
+        // fact, created successfully.
+        try
+        {
+            await db.Entry(item).Reference(x => x.AssignedTo).LoadAsync();
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Failed to load AssignedTo for task {TaskId}", item.Id);
+        }
+
+        try
+        {
+            await activity.LogAsync(item.Id, userId, "Created", $"Task \"{item.Title}\" created.");
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Failed to write activity log for task {TaskId}", item.Id);
+        }
+
         return Map(item);
     }
 
@@ -50,11 +73,26 @@ public class TaskService(AppDbContext db, ILogger<TaskService> logger)
         var item = await db.Tasks.Include(x => x.AssignedTo).FirstOrDefaultAsync(x => x.Id == id);
         if (item is null || (!isAdmin && item.CreatedById != userId && item.AssignedToId != userId)) return null;
 
+        var changes = DescribeChanges(item, r);
+
         item.Title = r.Title.Trim(); item.Description = r.Description.Trim(); item.Status = r.Status;
         item.Priority = r.Priority; item.Category = r.Category.Trim(); item.DueDate = r.DueDate;
         item.AssignedToId = r.AssignedToId; item.UpdatedAt = DateTime.UtcNow;
         await db.SaveChangesAsync();
         logger.LogInformation("Task updated: {TaskId} by {UserId}", id, userId);
+
+        if (changes.Count > 0)
+        {
+            try
+            {
+                await activity.LogAsync(id, userId, "Updated", string.Join(" ", changes));
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "Failed to write activity log for task {TaskId}", id);
+            }
+        }
+
         return Map(item);
     }
 
@@ -66,5 +104,19 @@ public class TaskService(AppDbContext db, ILogger<TaskService> logger)
         await db.SaveChangesAsync();
         logger.LogInformation("Task deleted: {TaskId} by {UserId}", id, userId);
         return true;
+    }
+
+    private static List<string> DescribeChanges(TaskItem item, UpdateTaskRequest r)
+    {
+        var changes = new List<string>();
+        if (item.Status != r.Status)
+            changes.Add($"Status changed from {item.Status} to {r.Status}.");
+        if (item.Priority != r.Priority)
+            changes.Add($"Priority changed from {item.Priority} to {r.Priority}.");
+        if (item.AssignedToId != r.AssignedToId)
+            changes.Add("Assignee changed.");
+        if (!string.Equals(item.Title, r.Title.Trim(), StringComparison.Ordinal))
+            changes.Add("Title changed.");
+        return changes;
     }
 }
