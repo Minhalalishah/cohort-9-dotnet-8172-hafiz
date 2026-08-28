@@ -59,6 +59,9 @@ TaskManagementTool/
 │   │   │   ├── Register.tsx
 │   │   │   ├── Dashboard.tsx
 │   │   │   └── Profile.tsx
+│   │   │   ├── TaskDetail.tsx
+│   │   │   └── TaskForm.tsx
+│   │   │   └── Tasks.tsx
 │   │   │
 │   │   ├── css/
 │   │   │   ├── auth.css
