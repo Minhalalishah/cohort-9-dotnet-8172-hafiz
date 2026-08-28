@@ -4,6 +4,9 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Layout from './components/Layout'
 import Dashboard from './pages/Dashboard'
+import Tasks from './pages/Tasks'
+import TaskForm from './pages/TaskForm'
+import TaskDetail from './pages/TaskDetail'
 import Profile from './pages/Profile'
 
 function Protected(){
@@ -16,6 +19,10 @@ export default function App(){
     <Route path="/register" element={<Register/>}/>
     <Route element={<Protected/>}>
       <Route path="/" element={<Dashboard/>}/>
+      <Route path="/tasks" element={<Tasks/>}/>
+      <Route path="/tasks/new" element={<TaskForm/>}/>
+      <Route path="/tasks/:id" element={<TaskDetail/>}/>
+      <Route path="/tasks/:id/edit" element={<TaskForm/>}/>
       <Route path="/profile" element={<Profile/>}/>
     </Route>
     <Route path="*" element={<Navigate to="/" replace/>}/>
