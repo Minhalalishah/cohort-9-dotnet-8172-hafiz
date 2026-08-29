@@ -18,3 +18,12 @@ public record TaskResponse(
     string? AssignedToName, DateTime CreatedAt, DateTime UpdatedAt);
 
 public record UserResponse(int Id, string FullName, string Email, string Role);
+
+public record CommentRequest(string Content);
+public record CommentResponse(int Id, int TaskItemId, int UserId, string UserName, string Content, DateTime CreatedAt);
+
+public record TagRequest(string Name, string Color);
+public record TagResponse(int Id, string Name, string Color, int TaskCount);
+
+public record ActivityLogResponse(
+    int Id, int TaskItemId, int UserId, string UserName, string Action, string Details, DateTime CreatedAt);

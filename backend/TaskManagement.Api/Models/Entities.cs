@@ -31,4 +31,36 @@ public class TaskItem
     public User? AssignedTo { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public ICollection<Tag> Tags { get; set; } = [];
+}
+
+public class Comment
+{
+    public int Id { get; set; }
+    public int TaskItemId { get; set; }
+    public TaskItem TaskItem { get; set; } = null!;
+    public int UserId { get; set; }
+    public User User { get; set; } = null!;
+    public string Content { get; set; } = "";
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+}
+
+public class Tag
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public string Color { get; set; } = "#6b7280";
+    public ICollection<TaskItem> Tasks { get; set; } = [];
+}
+
+public class TaskActivityLog
+{
+    public int Id { get; set; }
+    public int TaskItemId { get; set; }
+    public TaskItem TaskItem { get; set; } = null!;
+    public int UserId { get; set; }
+    public User User { get; set; } = null!;
+    public string Action { get; set; } = "";
+    public string Details { get; set; } = "";
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

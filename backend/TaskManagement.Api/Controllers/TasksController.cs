@@ -42,4 +42,11 @@ public class TasksController(TaskService service) : ControllerBase
         var ok = await service.DeleteAsync(id, UserId, IsAdmin);
         return ok ? NoContent() : NotFound(new { message = "Task not found or access denied." });
     }
+
+    [HttpGet("{id:int}/activity")]
+    public async Task<IActionResult> GetActivity(int id, [FromServices] ActivityLogService activityLog)
+    {
+        var logs = await activityLog.GetForTaskAsync(id, UserId, IsAdmin);
+        return logs is null ? NotFound(new { message = "Task not found or access denied." }) : Ok(logs);
+    }
 }

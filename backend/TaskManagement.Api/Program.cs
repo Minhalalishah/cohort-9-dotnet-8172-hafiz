@@ -52,6 +52,9 @@ builder.Services.AddScoped<JwtTokenService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TaskService>();
 builder.Services.AddScoped<DashboardService>();
+builder.Services.AddScoped<ActivityLogService>();
+builder.Services.AddScoped<CommentService>();
+builder.Services.AddScoped<TagService>();
 
 builder.Services.AddCors(options =>
 {
