@@ -73,7 +73,7 @@ TaskFlow combines a **React + TypeScript frontend** with an **ASP.NET Core 8 Web
 
 ### Create Tasks
 
-![Create Tasks](./screenshots/CreateTasks.PNG)
+![Create Tasks](./screenshots/CreateTask.PNG)
 
 ### Admin Profile
 
