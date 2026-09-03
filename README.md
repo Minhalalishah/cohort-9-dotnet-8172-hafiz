@@ -87,51 +87,90 @@ TaskFlow combines a **React + TypeScript frontend** with an **ASP.NET Core 8 Web
 ## 📁 Project Structure
 
 ```text
-TaskManagementTool/
+📁 Project Structure
+Task Management Tool/
 │
 ├── backend/
 │   ├── TaskManagement.Api/
 │   │   ├── Controllers/
+│   │   │   ├── AuthController.cs
+│   │   │   ├── CommentsController.cs
+│   │   │   ├── DashboardController.cs
+│   │   │   ├── TagsController.cs
+│   │   │   ├── TasksController.cs
+│   │   │   └── UsersController.cs
+│   │   │
 │   │   ├── Data/
+│   │   │   ├── AppDbContext.cs
+│   │   │   └── DbSeeder.cs
+│   │   │
 │   │   ├── Middleware/
+│   │   │   └── ExceptionHandlingMiddleware.cs
+│   │   │
 │   │   ├── Models/
+│   │   │   ├── Entities.cs
+│   │   │   └── Dtos.cs
+│   │   │
 │   │   ├── Services/
-│   │   ├── Properties/
-│   │   ├── appsettings.json
+│   │   │   ├── ActivityLogService.cs
+│   │   │   ├── AuthService.cs
+│   │   │   ├── CommentService.cs
+│   │   │   ├── DashboardService.cs
+│   │   │   ├── JwtTokenService.cs
+│   │   │   ├── TagService.cs
+│   │   │   └── TaskService.cs
+│   │   │
+│   │   ├── Migrations/
 │   │   ├── Program.cs
+│   │   ├── appsettings.json
 │   │   └── TaskManagement.Api.csproj
 │   │
-│   └── TaskManagement.Tests/
-│       ├── Controllers/
-│       ├── Services/
-│       └── TaskManagement.Tests.csproj
+│   ├── TaskManagement.Tests/
+│   │   ├── AuthServiceTests.cs
+│   │   ├── CommentServiceTests.cs
+│   │   ├── TagServiceTests.cs
+│   │   └── TaskServiceTests.cs
+│   │
+│   └── TaskManagement.sln
 │
 ├── frontend/
-│   ├── public/
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── Layout.tsx
+│   │   │   └── TaskFormFields.tsx
+│   │   │
 │   │   ├── pages/
+│   │   │   ├── Dashboard.tsx
+│   │   │   ├── Login.tsx
+│   │   │   ├── Profile.tsx
+│   │   │   ├── Register.tsx
+│   │   │   ├── TaskDetail.tsx
+│   │   │   ├── TaskForm.tsx
+│   │   │   └── Tasks.tsx
+│   │   │
 │   │   ├── css/
-│   │   ├── App.tsx
-│   │   ├── main.tsx
 │   │   ├── api.ts
 │   │   ├── auth.tsx
 │   │   ├── types.ts
-│   │   └── styles.css
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   │
 │   ├── package.json
-│   ├── package-lock.json
-│   ├── tsconfig.json
 │   ├── vite.config.ts
-│   └── index.html
+│   └── tsconfig.json
 │
 ├── screenshots/
-│   ├── Login.png
-│   ├── Create-Account.png
-│   ├── Dashboard.png
-│   └── Profile.png
 │
 ├── scripts/
-├── .gitignore
+│   ├── run-backend.ps1
+│   ├── run-backend.sh
+│   ├── run-frontend.ps1
+│   ├── run-frontend.sh
+│   ├── sonar-all.ps1
+│   ├── sonar-backend.ps1
+│   ├── sonar-frontend.ps1
+│   └── start-sonarqube.ps1
+│
 ├── docker-compose.yml
 ├── sonar-project.properties
 └── README.md
@@ -234,5 +273,5 @@ The repository includes `sonar-project.properties` for SonarQube analysis and co
 ## 👨‍💻 Author
 
 **Hafiz Syed Minhal Ali**  
-**Cohort:** 9 .NET
+**Cohort:** 9 .NET-8172-hafiz
 
