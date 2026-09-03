@@ -239,7 +239,6 @@ http://localhost:5173
 From the test project directory:
 
 ```bash
-cd backend/TaskManagement.Tests
 dotnet test
 ```
 
